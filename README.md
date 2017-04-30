@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/cayman/assets/css/style.css?v=9301defcbd67e46626b6cdf750027f33844b7fa3">
   </head>
   <body>
     <section class="page-header">
