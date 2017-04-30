@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>随身导航 - 云端旅行箱</title>
+<!--link type="text/css" href="http://zheye.cc/Public/Css/a.css" rel="stylesheet" /-->
+<script src="http://cdn.bootcss.com/jquery/1.7.2/jquery.min.js"></script>
+</head>
+<body id="bg" onload="StartTime()" onselectstart="return false" ondragstart="return false" onselect="document.selection.empty()">
+<style type="text/css">
+body{background-image: linear-gradient(115deg,#72abc8,#c5ffae);font-family:arial,tahoma;font-size:12px;overflow:hidden;}
+html{min-height:101%}  
+*{padding:0;margin:0}
+ul,li{list-style:none}
+a{text-decoration:none;word-wrap:break-word}
+a:hover{text-decoration:underline}
+img{border:0}
+input,textarea{outline:none;}
+div{margin:0 auto;}
+  
+a:link {color: #000000}
+a:visited {color: #000000}
+a:active {color: #000000} /* 选定 */
+
+div{font-family:"Microsoft YaHei";}
+#ld{float: right;position: absolute;top: 70px;right:70px;bottom: 1px;}
+.lbar{border-bottom:1px solid white;color:white;width: 100px; height: 30px;font-size: 20px;background-color:grey;text-align:center;}
+.label{width: 100px; height: 30px;font-size: 20px;background-color:black;text-align:center;font-color:white;}
+.label2{width: 100px; height: 30px;font-size: 20px;background-color:white;text-align:center}
+
+#timeb{float: right;position: absolute;bottom:70px;right:70px;}
+#lead,#timebg{color:white;width: 100px; height: 30px;font-size: 20px;background-color:rgba(128,128,128,0.5);text-align:center;border-radius:25px;}
+.set{color:white;font-size: 10px;}
+.set2{color: black;font-size: 10px;}
+
+.label a:link{color:white} 
+.label a:visited{color:white;}
+.label a:hover {font-weight:bold;color: #00ff00;transition:color 0.5s;text-decoration: none;} 
+.label a font:hover {color: #00ff00;transition:color 0.5s;text-decoration: none;} 
+.label2 a:hover {font-weight:bold;color: #00ff00;transition:color 0.5s;text-decoration: none;} 
+.label2 a font:hover {color: #00ff00;transition:color 0.5s;text-decoration: none;} 
+
+#clockb{display:none;padding-top:160px;height: 310px;}
+/*<*/
+@media  screen and (max-device-height: 768px) {
+    #clockb{padding-top:90px;}
+　　　　}
+/*>*/
+@media  screen and (min-device-height: 900px) {
+    #clockb{padding-top:170px;}
+　　　　}
+
+@media screen and (min-device-height: 768px) and (max-device-height: 1024px) {
+    #clockb{padding-top:150px;}
+}
+  
+//#clock{font-family:"方正兰亭超细黑简体","Microsoft YaHei";font-size:105px;color:white;
+      position:absolute;top: 50%;left:50%;width: 105px;margin-left: -52.5px;}
+  
+#canvas{z-index:-1;position:absolute;top: 0;left:0;bottom:0}
+ 
+#top{ height:32px; margin:0 65px 25px 65px;}
+.ipt{ width:505px; float:left;}  
+.search{ width:540px; height:40px; background:#fff; float:left;}  
+.search_engine{ width:30px; height:38px; padding:12px 0 0 10px;cursor:pointer;overflow:visible; float:left; position:relative;}
+.search_engine a{ width:16px; height:16px; background:url(http://zheye.cc/Public/Images/icon.png) no-repeat; float:left;}
+.search_engine a.bing{background:url(http://bing.com/sa/simg/bing_p_rr_teal_min.ico);background-size:16px;}
+.search_engine a.wiki{background:url(https://wikipedia.org/static/favicon/wikipedia.ico);background-size:16px;}
+.search_engine a.moegirl{background:url(https://zh.moegirl.org/favicon.ico);}
+.search_engine a.pixiv{background:url(http://www.pixiv.net/favicon.ico);background-size:16px;} 
+.search_engine a.douban{background:url(https://img3.doubanio.com/favicon.ico);background-size:16px;}
+.search_engine a.zhihu{background:url(http://static.zhihu.com/static/favicon.ico);background-size:16px;} 
+.search_engine a.baidu{ background-position:0 -595px;}
+.search_engine a.google{ background-position:0 -570px;}   
+.search_arr{height:5px;margin:7px 0 0 5px;float:left;overflow:hidden;}
+.search_arr span{width:7px;height:7px; background:url(http://zheye.cc/Public/Images/icon.png) -50px -575px no-repeat;float:left;}
+.search_text{font-size:18px;outline:none;border:0;height:40px; line-height:38px; width:460px}   
+.search_btn{ width:32px; height:32px; background:url(http://zheye.cc/Public/Images/icon.png) -35px -585px no-repeat; border:none; cursor:pointer;}   
+.search_menu{ color:#999;background:#fff; position:absolute; left:0; top:31px; display:none; z-index:99;}
+.search_menu li{ width:80px; height:16px; line-height:16px; line-height:20px\9; padding:5px 10px 5px 2px;cursor:pointer; overflow:hidden;}
+.search_menu a{width:16px;height:16px; background:url(http://zheye.cc/Public/Images/icon.png) no-repeat; margin:1px 5px;float:left;}
+</style>
+
+ <canvas id="canvas" oncontextmenu="return false"></canvas>  
+       <div id="h_mid">
+    <div id="top"> 
+         <div class="search">
+          <div class="ipt">
+           <div class="search_engine">
+            <a href="javascript:;" class="baidu"></a>
+             <div class="search_arr"><span></span></div>
+              <ul class="search_menu">
+               <li><a href="javascript:;" class="baidu"></a>百度</li>
+                <li><a href="javascript:;" class="bing"></a>必应</li>
+                 <li><a href="javascript:;" class="google"></a>谷歌</li>
+                  <li><a href="javascript:;" class="wiki"></a>维基百科</li>
+                  <li><a href="javascript:;" class="moegirl"></a>萌娘百科</li>
+                  <li><a href="javascript:;" class="pixiv"></a>pixiv作品</li>
+                  <li><a href="javascript:;" class="douban"></a>豆瓣</li>
+                 <li><a href="javascript:;" class="zhihu"></a>知乎</li>
+               </ul>
+              </div>
+             <input type="text" class="search_text" />
+            </div>
+           <input class="search_btn" value="" type="submit" />                      
+      </div>    
+<!--dhl--> 
+<div id="ld">  
+<p class="lbar" onclick="Show_Hidden(ldi)">娱乐</p> 
+    <div id="ldi">
+        <p class="label">
+        <a href="http://zhihu.com/" target="_blank">知乎</a>
+        </p>    
+        <p class="label2">
+        <a href="http://bilibili.com/" target="_blank">哔哩哔哩</a>
+        </p> 
+        <p class="label">
+        <a href="http://music.163.com/" target="_blank">
+         <font size="4">网易云音乐</font>
+        </a>
+        </p> 
+        <p class="label2">
+        <a href="https://movie.douban.com/" target="_blank">豆瓣电影</a>
+        </p>
+        <p class="label">
+        <a href="http://book.douban.com/" target="_blank">豆瓣读书</a>
+        </p> 
+        <p class="label2">
+        <a href="http://youtube.com/" target="_blank">Youtube</a>
+        </p> 
+        <p class="label">
+        <a href="http://jandan.net/" target="_blank">煎蛋</a>
+        </p>  
+        <p class="label2">
+        <a href="http://quora.com/" target="_blank">Quora</a>
+        </p>   
+    </div>
+
+<p class="lbar" onclick="Show_Hidden(ldi2)"><font size="4">程序&设计</font></p> 
+    <div id="ldi2"  style="display:none">
+        <p  class="label">
+        <a href="http://github.com/" target="_blank">GitHub</a>
+        </p>
+        <p class="label2">
+        <a href="http://stackoverflow.com/" target="_blank">
+        <font size="2">StackOverflow</font></a>
+        </p>
+        <p class="label">
+        <a href="http://huaban.com/" target="_blank">花瓣</a>
+        </p>
+    </div>
+    
+<p class="lbar" onclick="Show_Hidden(ldi3)">工具箱</p> 
+    <div id="ldi3" style="display:none">  
+        <p class="label">
+            <a href="http://www.163.com/" target="_blank">163邮箱</a>
+        </p>       
+         <p class="label2">
+           <a href="http://pan.baidu.com/" target="_blank">百度网盘</a>
+        </p>      
+         <p class="label">
+            <a href="http://webps.cn/" target="_blank">PSweb</a>
+        </p>
+         <p class="label2">
+            <a href="http://fanyi.baidu.com/" target="_blank">百度翻译</a>
+         </p>
+    </div>
+ <p class="lbar" onclick="Show_Hidden(ldi4)">背景设置</p> 
+    <div id="ldi4" style="display:none">  
+        <p class="label">
+            <a class="set" onclick="bg0()">现代(默认)</a> 
+        </p>
+         <p class="label2">
+             <a class="set2" onclick="bg1()">Yuu - Liberate</a> 
+        </p>      
+    </div>  
+    <center>
+        <font color="black">
+          <a href="http://blog.sherry.cf" target="_blank" style="text-decoration: none;">@Sherry,2017</a>
+        </font>
+    </center>    
+</div>
+
+<div id="timeb">
+    <p  id="timebg" onclick="timebg()">屏保模式</p>  
+    <p  id="lead" style="display:none" onclick="lead()">导航模式</p>  
+</div>
+
+<iframe id="clockb" src ="http://www.sherry.cf/h3-/" scrolling="no" width="100%" height="100%" frameborder="0">
+    <p>此浏览器不支持框架。</p>
+</iframe>
+
+<script>
+//搜索引擎
+    $('.search_menu li').click(function(){
+
+        $(this).parent().parent().children('a').attr('class',$(this).children('a').attr('class'));
+
+        $(this).parent().hide();    
+
+    });
+
+    $('.search_text').keypress(function(e){
+
+        var key = e.which; 
+
+        if (key == 13) {
+
+            $('.search_btn').click();
+
+        }   
+
+    })
+
+    $('.search_btn').click(function(){
+
+        var k = $('.search_text').val();
+
+        if($('.search_engine').children('a').attr('class')=='baidu'){
+
+            window.open('http://www.baidu.com/s?wd=' + k);
+
+        }
+
+    })
+
+    $('.search_btn').click(function(){
+
+        var k = $('.search_text').val();
+
+        if($('.search_engine').children('a').attr('class')=='moegirl'){
+       
+            window.open('http://zh.moegirl.org/' + k);
+
+        }   
+
+    })
+
+    $('.search_btn').click(function(){
+
+        var k = $('.search_text').val();
+
+        if($('.search_engine').children('a').attr('class')=='google'){
+
+            window.open('http://google.com/search?q=' + k);
+
+        }   
+
+    })
+
+    $('.search_btn').click(function(){
+
+        var k = $('.search_text').val();
+
+        if($('.search_engine').children('a').attr('class')=='bing'){        
+
+            window.open('http://cn.bing.com/search?q=' + k);
+
+        }   
+
+    })
+
+    $('.search_btn').click(function(){
+
+        var k = $('.search_text').val();
+
+        if($('.search_engine').children('a').attr('class')=='zhihu'){          
+
+            window.open('https://www.zhihu.com/search?type=content&q=' + k);
+
+        }   
+
+    })
+
+    $('.search_btn').click(function(){
+
+        var k = $('.search_text').val();
+
+        if($('.search_engine').children('a').attr('class')=='wiki'){
+
+            window.open('https://zh.wikipedia.org/wiki/' + k);
+
+        }   
+
+    })
+      
+    $('.search_btn').click(function(){
+
+        var k = $('.search_text').val();
+
+        if($('.search_engine').children('a').attr('class')=='pixiv'){
+
+            window.open('http://www.pixiv.net/member_illust.php?mode=medium&illust_id=' + k);
+
+        }   
+
+    })
+
+    $('.search_btn').click(function(){
+
+        var k = $('.search_text').val();
+
+        if($('.search_engine').children('a').attr('class')=='douban'){
+    
+            window.open('https://www.douban.com/search?q=' + k);
+
+        }   
+
+    })
+             
+//搜索框
+    $(document).ready(function(){
+        //
+        h = parseInt($(window).height());
+        mh = parseInt($('#h_mid').height());
+        //#h_mid
+        ssmt = 70
+        $('#h_mid').css('padding-top',ssmt + 'px');
+
+        //
+        $('.simg').click(function(){
+            if($(this).attr('class')=='simg'){
+                $(this).children('.sicon').show();
+                $(this).addClass('full');
+            }else{
+                $(this).children('.sicon').hide();
+                $(this).removeClass('full');
+            }
+        })
+        $('.simg').each(function(index){
+            if(index<5){
+                $(this).children('.sicon').show();
+                $(this).addClass('full');
+            }
+        })
+        $('#check_all').click(function(){
+            if($(this).attr('checked')){
+                $('.simg').children('.sicon').show();
+                $('.simg').addClass('full');
+            }else{
+                $('.simg').children('.sicon').hide();
+                $('.simg').removeClass('full');
+            }
+        })
+        //
+        $("a").bind("focus",function(){
+            if(this.blur){ 
+            this.blur();
+            }
+        });//
+        
+        $('.search_engine').hover(function(){
+            $('.search_menu').show();   
+        },function(){
+            $('.search_menu').hide();   
+        })
+        
+        $('.search_menu li').hover(function(){
+                $(this).css('background-color','#f4f4f4');
+            },function(){
+                $(this).css('background-color','#fff');
+        })
+        //
+        $('.heat_box div:last').css('border','0');
+        //gotoleft
+        
+        $('.gotoleft').click(function(){
+            $('.pages li').eq(0).click();
+        })
+
+        //
+        $('body').mousemove(function(e) {   
+            var xx = e.originalEvent.x || e.originalEvent.layerX || 0;  
+            var yy = e.originalEvent.y || e.originalEvent.layerY || 0; 
+        //alert(xx);    
+        }); 
+        
+    })
+//网址菜单
+    function Show_Hidden(trid){
+        if(trid.style.display=="block"){
+            trid.style.display='none';
+        }else{
+            trid.style.display='block';
+        }
+    }   
+//切换背景
+    function bg0(){
+        x=document.getElementById("canvas")
+        x.style.display="block";          
+        x=document.getElementById("bg") 
+        x.style.background="linear-gradient(115deg,#72abc8,#c5ffae)"; 
+        }
+    function bg1(){
+        x=document.getElementById("canvas") 
+        x.style.display="none";        
+        x=document.getElementById("bg") 
+        x.style.background="url(http://imglf0.nosdn.127.net/img/azlNcDBwSDRmMWNWMU5Wd05KdE9wSmxUejk0eWJNNVFwdnFBQnk1cjk0RkpYTUUvbnRpZHNnPT0.jpg)"
+        x.style.backgroundSize="cover";
+        }
+//屏保
+    function timebg(){
+        x=document.querySelector(".search")
+        x.style.display="none";   
+        x=document.querySelector("#ld")
+        x.style.display="none";   
+        x=document.querySelector("#timebg")
+        x.style.display="none";   
+        x=document.querySelector("#lead")
+        x.style.display="block";   
+        x=document.querySelector("#clockb")
+        x.style.display="block";   
+        }
+    function lead(){
+        x=document.querySelector(".search")
+        x.style.display="block";   
+        x=document.querySelector("#ld")
+        x.style.display="block";   
+        x=document.querySelector("#lead")
+        x.style.display="none";   
+        x=document.querySelector("#timebg")
+        x.style.display="block";  
+        x=document.querySelector("#clockb")
+        x.style.display="none";    
+        }   
+//bg url()
+
+//background
+        //定义画布宽高和生成点的个数
+        var WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 35;
+        
+        var canvas = document.getElementById('canvas');
+        canvas.width = WIDTH,
+        canvas.height = HEIGHT;
+        var context = canvas.getContext('2d');
+        context.strokeStyle = 'rgba(0,0,0,0.02)',
+        context.strokeWidth = 1,
+        context.fillStyle = 'rgba(0,0,0,0.05)';
+        var circleArr = [];
+        //线条：开始xy坐标，结束xy坐标，线条透明度
+        function Line (x, y, _x, _y, o) {
+            this.beginX = x,
+            this.beginY = y,
+            this.closeX = _x,
+            this.closeY = _y,
+            this.o = o;
+        }
+        //点：圆心xy坐标，半径，每帧移动xy的距离
+        function Circle (x, y, r, moveX, moveY) {
+            this.x = x,
+            this.y = y,
+            this.r = r,
+            this.moveX = moveX,
+            this.moveY = moveY;
+        }
+        //生成max和min之间的随机数
+        function num (max, _min) {
+            var min = arguments[1] || 0;
+            return Math.floor(Math.random()*(max-min+1)+min);
+        }
+        // 绘制原点
+        function drawCricle (cxt, x, y, r, moveX, moveY) {
+            var circle = new Circle(x, y, r, moveX, moveY)
+            cxt.beginPath()
+            cxt.arc(circle.x, circle.y, circle.r, 0, 2*Math.PI)
+            cxt.closePath()
+            cxt.fill();
+            return circle;
+        }
+        //绘制线条
+        function drawLine (cxt, x, y, _x, _y, o) {
+            var line = new Line(x, y, _x, _y, o)
+            cxt.beginPath()
+            cxt.strokeStyle = 'rgba(0,0,0,'+ o +')'
+            cxt.moveTo(line.beginX, line.beginY)
+            cxt.lineTo(line.closeX, line.closeY)
+            cxt.closePath()
+            cxt.stroke();
+
+        }
+        //初始化生成原点
+        function init () {
+            circleArr = [];
+            for (var i = 0; i < POINT; i++) {
+                circleArr.push(drawCricle(context, num(WIDTH), num(HEIGHT), num(15, 2), num(10, -10)/40, num(10, -10)/40));
+            }
+            draw();
+        }
+        //每帧绘制
+        function draw () {
+            context.clearRect(0,0,canvas.width, canvas.height);
+            for (var i = 0; i < POINT; i++) {
+                drawCricle(context, circleArr[i].x, circleArr[i].y, circleArr[i].r);
+            }
+            for (var i = 0; i < POINT; i++) {
+                for (var j = 0; j < POINT; j++) {
+                    if (i + j < POINT) {
+                        var A = Math.abs(circleArr[i+j].x - circleArr[i].x),
+                            B = Math.abs(circleArr[i+j].y - circleArr[i].y);
+                        var lineLength = Math.sqrt(A*A + B*B);
+                        var C = 1/lineLength*7-0.009;
+                        var lineOpacity = C > 0.03 ? 0.03 : C;
+                        if (lineOpacity > 0) {
+                            drawLine(context, circleArr[i].x, circleArr[i].y, circleArr[i+j].x, circleArr[i+j].y, lineOpacity);
+                        }
+                    }
+                }
+            }
+        }
+        //调用执行
+        window.onload = function () {
+            init();
+            setInterval(function () {
+                for (var i = 0; i < POINT; i++) {
+                    var cir = circleArr[i];
+                    cir.x += cir.moveX;
+                    cir.y += cir.moveY;
+                    if (cir.x > WIDTH) cir.x = 0;
+                    else if (cir.x < 0) cir.x = WIDTH;
+                    if (cir.y > HEIGHT) cir.y = 0;
+                    else if (cir.y < 0) cir.y = HEIGHT;
+                    
+                }
+                draw();
+            }, 16);
+
+        }    
+</script> 
+        </body>
+</html>
