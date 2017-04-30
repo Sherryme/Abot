@@ -11,8 +11,8 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Cayman theme</h1>
-      <h2 class="project-tagline">Cayman is a clean, responsive theme for GitHub Pages.</h2>
+      <h1 class="project-name">随身导航</h1>
+      <h2 class="project-tagline">来自云端的收藏夹，搭配多个搜索引擎，并可做屏保使用</h2>
       
         <a href="https://github.com/pages-themes/cayman" class="btn">View on GitHub</a>
       
@@ -21,22 +21,6 @@
         <a href="https://github.com/pages-themes/cayman/tarball/master" class="btn">Download .tar.gz</a>
       
     </section>
-
-    <section class="main-content">
-      <p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>.</p>
-
-<p><a href="another-page">Link to another page</a>.</p>
-
-<p>There should be whitespace between paragraphs.</p>
-
-<p>There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.</p>
-
-<h1 id="header-1"><a href="#header-1"></a>Header 1</h1>
-
-<p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</p>
-
-
-
       <footer class="site-footer">
         
           <span class="site-footer-owner"><a href="https://github.com/pages-themes/cayman">cayman</a> is maintained by <a href="https://github.com/pages-themes">pages-themes</a>.</span>
