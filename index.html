@@ -37,15 +37,15 @@ div{margin:0 auto;}
 .search_arr span{width:7px;height:7px; background:url(http://zheye.cc/Public/Images/icon.png) -50px -575px no-repeat;float:left;}
 .search_text{font-size:18px;outline:none;border:0;height:40px; line-height:38px; width:460px}   
 .search_btn{width:32px; height:32px; background:url(http://zheye.cc/Public/Images/icon.png) -35px -585px no-repeat; border:none; cursor:pointer;}   
-.search_menu{color:#999;background:#fff; position:absolute; left:0; top:31px; display:none; z-index:99;}
+.search_menu{color:#999;background:#fff; position:absolute; left:0; top:40px; display:none; z-index:99;}
 .search_menu li{width:80px; height:16px; line-height:16px; line-height:20px\9; padding:5px 10px 5px 2px;cursor:pointer; overflow:hidden;}
 .search_menu a{width:16px;height:16px; background:url(http://zheye.cc/Public/Images/icon.png) no-repeat; margin:1px 5px;float:left;}
-  
+.bdsug_copy{display: none}
 
 div{font-family:"Microsoft YaHei";}
 #ld{float: right;position: absolute;top: 70px;right:70px;bottom: 1px}
-.lbar,#ldi,#ldi2,#ldi3{border:1px solid grey;border-bottom: none;}
-.lbar{color:white;width: 100px; height: 30px;font-size: 20px;background-color:rgba(0, 0, 0, 0.65);text-align:center;}
+.lbar1,.lbar2,.lbar3,#ldi,#ldi2,#ldi3,.lbar{border:1px solid grey;border-bottom: none;}
+.lbar1,.lbar2,.lbar3,.lbar{color:white;width: 100px; height: 30px;font-size: 20px;background-color:rgba(0, 0, 0, 0.65);text-align:center;}
 #lbbottom{border-radius:0 0 5px 5px}
 #lbtop{border-radius:5px 5px 0 0}
 .label,.label2{width: 100px; height: 30px;font-size: 20px;text-align:center}
@@ -58,34 +58,28 @@ div{font-family:"Microsoft YaHei";}
 #timeb{float: right;position: absolute;bottom:70px;right:70px;}
 #lead,#timebg{
 border:1px solid grey;color:white;width: 100px;height:30px;font-size:20px;background-color:rgba(0, 0, 0, 0.65);text-align:center;border-radius:25px}
-#setbox{border:1px solid rgb(137,137,137);font-size:16px;background-color:white;position:absolute;left:40%;top:25%;width: 300px}
+#setbox{border:1px solid grey;color:white;background-color:rgba(0, 0, 0, 0.65);font-size:16px;position:absolute;left:40%;top:25%;width: 300px}
 #setbox .close{position:absolute;right:5px;top:0;text-decoration:none}
 .close a:hover{color:rgb(232,17,35);text-decoration:none}
-#setbox p{font-size:18px;height: 40px;}
-#setbox #bgurl{padding: 10px;}
+#setbox p{color:black;font-size:18px;height: 40px;}
+#setbox #bgurl{padding: 10px} /* */ #bgurl input{height: 25px;}
 #music{position:absolute;left:-10px;bottom:-10px;width:290px;height:472px;}
 #music .hide{font-size:14px;position:absolute;right:4px;top:10px;text-decoration:none}
 .tab li{text-align:center;width:55px;position:absolute;left:10px;bottom:462px;background:white;color:#333333;display:inline;font-size:16px;}
 #clockb{display:none;padding-top:160px;height: 310px}
 /*<*/
-@media  screen and (max-device-height: 768px) {
-    #clockb{padding-top:90px;}
-　　　　}
+@media  screen and (max-device-height: 768px) {#clockb{padding-top:90px;} }
 /*>*/
-@media  screen and (min-device-height: 900px) {
-    #clockb{padding-top:170px;}
-　　　　}
-@media screen and (min-device-height: 768px) and (max-device-height: 1024px) {
-    #clockb{padding-top:150px;}
-        }
-//#clock{font-family:"方正兰亭超细黑简体","Microsoft YaHei";font-size:105px;color:white;
-      position:absolute;top: 50%;left:50%;width: 105px;margin-left: -52.5px;}
+@media  screen and (min-device-height: 900px) {#clockb{padding-top:170px;} }
+@media screen and (min-device-height: 768px) and (max-device-height: 1024px) {#clockb{padding-top:150px;} }
+//#clock{
+font-family:"方正兰亭超细黑简体","Microsoft YaHei";font-size:105px;color:white;position:absolute;top: 50%;left:50%;width: 105px;margin-left: -52.5px;}
   
 #canvas{z-index:-1;position:absolute;top: 0;left:0;bottom:0}
 </style>
 
  <canvas id="canvas" oncontextmenu="return false" style="display:none"></canvas>  
-       <div id="h_mid">
+   <div id="h_mid">
     <div id="top"> 
          <div class="search">
           <div class="ipt">
@@ -103,50 +97,49 @@ border:1px solid grey;color:white;width: 100px;height:30px;font-size:20px;backgr
                  <li><a href="javascript:;" class="zhihu"></a>知乎</li>
                </ul>
               </div>
-             <input type="text" class="search_text" />
-            </div>
-           <input class="search_btn" value="" type="submit" />                      
-      </div>    
+             <input id="ipt1" name="tn" type="hidden" value="baidu" >
+           <input type="text" name="word" id="sou1" class="search_text" baiduSug=1 onmouseover="focus()">
+          </div>
+       <input class="search_btn" value="" type="submit" />    
+    </div>    
 <!--dhl--> 
-<div id="ld"> 
-   <p class="lbar" onclick="Show_Hidden(ldi)" id="lbtop">娱乐</p> 
+<div id="ld">
+  <p class="lbar1" id="lbtop">娱乐</p> 
    <div id="ldi"> 
-    <p class="label"> <a href="http://zhihu.com/" target="_blank">知乎</a> </p> 
-    <p class="label2"> <a href="http://bilibili.com/" target="_blank">哔哩哔哩</a> </p> 
-    <p class="label"> <a href="http://music.163.com/" target="_blank"> <font size="4">网易云音乐</font> </a> </p> 
-    <p class="label2"> <a href="https://movie.douban.com/" target="_blank">豆瓣电影</a> </p> 
-    <p class="label"> <a href="http://book.douban.com/" target="_blank">豆瓣读书</a> </p> 
-    <p class="label2"> <a href="http://youtube.com/" target="_blank">Youtube</a> </p> 
-    <p class="label"> <a href="http://jandan.net/" target="_blank">煎蛋</a> </p> 
+     <p class="label"> <a href="http://zhihu.com/" target="_blank">知乎</a> </p> 
+      <p class="label2"> <a href="http://bilibili.com/" target="_blank">哔哩哔哩</a> </p> 
+       <p class="label"> <a href="http://music.163.com/" target="_blank"> <font size="4">网易云音乐</font> </a> </p> 
+       <p class="label2"> <a href="https://movie.douban.com/" target="_blank">豆瓣电影</a> </p> 
+       <p class="label"> <a href="http://book.douban.com/" target="_blank">豆瓣读书</a> </p> 
+      <p class="label2"> <a href="http://youtube.com/" target="_blank">Youtube</a> </p> 
+     <p class="label"> <a href="http://jandan.net/" target="_blank">煎蛋</a> </p> 
     <p class="label2"> <a href="http://quora.com/" target="_blank">Quora</a> </p> 
    </div>
 
-  <p class="lbar" onclick="Show_Hidden(ldi2)"><font size="4">程序&amp;设计</font></p> 
+  <p class="lbar2"><font size="4">程序&amp;设计</font></p> 
   <div id="ldi2" style="display:none"> 
    <p class="label"> <a href="http://github.com/" target="_blank">GitHub</a> </p> 
-   <p class="label2"> <a href="http://stackoverflow.com/" target="_blank"> <font size="2">StackOverflow</font></a> </p> 
+    <p class="label2"> <a href="http://stackoverflow.com/" target="_blank"> <font size="2">StackOverflow</font></a> </p> 
    <p class="label"> <a href="http://huaban.com/" target="_blank">花瓣</a> </p> 
   </div> 
 
-  <p class="lbar" onclick="Show_Hidden(ldi3)">工具箱</p> 
+  <p class="lbar3">工具箱</p> 
   <div id="ldi3" style="display:none"> 
    <p class="label"> <a href="http://www.163.com/" target="_blank">163邮箱</a> </p> 
-   <p class="label2"> <a href="http://pan.baidu.com/" target="_blank">百度网盘</a> </p> 
-   <p class="label"> <a href="http://webps.cn/" target="_blank">PSweb</a> </p> 
+    <p class="label2"> <a href="http://pan.baidu.com/" target="_blank">百度网盘</a> </p> 
+    <p class="label"> <a href="http://webps.cn/" target="_blank">PSweb</a> </p> 
    <p class="label2"> <a href="http://fanyi.baidu.com/" target="_blank">百度翻译</a> </p> 
   </div>
 
  <p class="lbar" id="mbox">音乐盒</p>    
 
- <p class="lbar" onclick="Show_Hidden(setbox)" id="lbbottom" style="border-bottom:1px solid grey" >设置</p>    
+ <p class="lbar" id="lbbottom" onclick="Show_Hidden(setbox)" style="border-bottom:1px solid grey" >设置</p>    
     <center>
         <font color="black">
           <a href="http://blog.sherry.cf" target="_blank" style="text-decoration: none;">@Sherry,2017</a>
         </font>
     </center>   
-        <!--p class="label2">
-            <a class="set" onselect="document.selection.empty()">自定义</a> 
-        </p-->       
+            <!--a class="set" onselect="document.selection.empty()">自定义</a--> 
 </div>
 
 <div id="timeb">
@@ -164,13 +157,13 @@ border:1px solid grey;color:white;width: 100px;height:30px;font-size:20px;backgr
     <a>x</a>
    </div> 
    <p style="background:linear-gradient(115deg,#72abc8,#c5ffae)" id="ShowC">现代(动态)</p> 
-   <p style="background:url(http://wx1.sinaimg.cn/large/75e30fd5ly1fjov160os2j215o0lx1kx.jpg)" id="HideC">Liberate - Yuu</p> 
-   <p style="background:url(https://orig00.deviantart.net/eb42/f/2016/228/4/7/3s_by_wlop-dae4axs.jpg)" id="HideC">南山南 - wlop</p> 
-   <p style="background:pink" id="HideC">樱花粉</p> 
+    <p style="background:url(http://wx1.sinaimg.cn/large/75e30fd5ly1fjov160os2j215o0lx1kx.jpg)" id="HideC">Liberate - Yuu</p> 
+    <p style="background:url(https://orig00.deviantart.net/eb42/f/2016/228/4/7/3s_by_wlop-dae4axs.jpg)" id="HideC2">南山南 - wlop</p> 
+   <p style="background:pink" id="HideC3">樱花粉</p> 
    <div id="bgurl">
      背景图片链接:
-    <input type="text" size="25" id="inputBgUrl" /> 
-    <input type="button" onclick="doChangeBg()" value="更换背景" /> 
+    <input type="text" size="25" id="inputBgUrl" placeholder="右键一张图片，选择“复制图片地址”"> 
+    <input type="button" id="HideC4" onclick="doChangeBg()" value="更换背景"> 
    </div> 
    <div id="outputDiv"></div> 
 </div> 
@@ -197,19 +190,18 @@ border:1px solid grey;color:white;width: 100px;height:30px;font-size:20px;backgr
         </iframe>
    </div>
 </div>
-
+<script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script><!--必须放在回调函数前-->
 <script>
 //自定义背景
     function doChangeBg(){
      var bgUrl=$("#inputBgUrl").val();
      var s="<style>body{background:url(\""+bgUrl+"\");background-size:cover;}</style>";
+     var bgVal="background:url(\""+bgUrl+"\");background-size:cover";
      $("body").css("background","");
-     $("canvas").hide(); 
      $("#outputDiv").html(s);
-   //$.cookie("bg",$("#inputBgUrl").val(), {expires: 7});
+     $.cookie("bg",$("body").css("background"), {expires: 7});//存储背景图cookie
     }   
-//Cookie 
-    //背景           //background-size="cover"
+//Cookie 背景
     $(function() {
         $("#setbox p").click(function() {
             $("body").css({"background":$(this).css("background"),"background-size":"cover"});
@@ -223,47 +215,54 @@ border:1px solid grey;color:white;width: 100px;height:30px;font-size:20px;backgr
     $("#ShowC").click(function(){
         $("canvas").show(); 
     });
-    $("#HideC").click(function(){
+    $("#HideC,#HideC2,#HideC3,#HideC4").click(function(){
         $("canvas").hide(); 
     });
-//音乐盒
-   //切换歌单
+//音乐盒 切换歌单
     $(document).ready(function(){
         $(".tab li").click(function(){
         $(".tab li").eq($(this).index()).addClass("cur").siblings().removeClass('cur');
       //$(".mbox").replaceWith($(this).index().addClass("cur"));  
-        $(".mbox").hide().eq($(this).index()).show();
-       //another way: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on'); 
+        $(".mbox").hide().eq($(this).index()).show(); 
+      //another way: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on'); 
         });
     }); 
-   //显隐动画
-    $("#mbox").click(function(){
-        $("#music").toggle("fast"); 
-    });
-    $(".hide").click(function(){
-        $("#music").hide("slow"); 
-    });
 //屏保                
     $("#timebg").click(function(){
         $("#timebg").hide();    
-        $(".search").hide("slow");
-        $("#ld").hide("slow");
-        $("#lead").show();    
+         $(".search").hide("slow");
+          $("#ld").hide("slow");
+         $("#lead").show();    
         $("#clockb").show();
     });
     $("#lead").click(function(){
         $("#lead").hide();    
-        $(".search").show("fast");
-        $("#ld").show("fast");
-        $("#timebg").show();
+         $(".search").show("fast");
+          $("#ld").show("fast");
+         $("#timebg").show();
         $("#clockb").hide();
     });
 //菜单显隐
-    function Show_Hidden(fuck){
-        if(fuck.style.display=="block"){
-            fuck.style.display='none';
+    $(".lbar1").click(function(){
+          $("#ldi").slideToggle("fast");    
+    });
+    $(".lbar2").click(function(){
+          $("#ldi2").slideToggle("fast");     
+    });
+    $(".lbar3").click(function(){
+          $("#ldi3").slideToggle("fast");
+    });
+    $("#mbox").click(function(){
+        $("#music").animate({width:'toggle'},"fast")
+    });
+    $(".hide").click(function(){
+        $("#music").animate({width:'toggle'},"slow")
+    });
+    function Show_Hidden(fkjs){
+        if(fkjs.style.display=="block"){
+            fkjs.style.display='none';
         }else{
-            fuck.style.display='block';
+            fkjs.style.display='block';
         }
     }   
 //搜索引擎
@@ -274,7 +273,7 @@ border:1px solid grey;color:white;width: 100px;height:30px;font-size:20px;backgr
         });
         if ($.cookie("sc")) {
             $('.search_menu li').parent().parent().children('a').attr('class',$.cookie('sc'));
-        }*/
+        }*/  //存储最近使用的搜索引擎cookie
     });
     $('.search_text').keypress(function(e){
         var key = e.which; 
@@ -468,7 +467,26 @@ border:1px solid grey;color:white;width: 100px;height:30px;font-size:20px;backgr
                 }
                 draw();
             }, 16);
-        }    
+        } 
+//search hint
+   document.getElementById("sou1").focus(); 
+   var txtObj = document.getElementById("alertSpan");//回调函数，用于获取用户当前选择的文字
+   function show(str){
+   txtObj.innerHTML = str;
+   }
+   var params = {
+   "XOffset": 0,   //提示框位置横向偏移量,单位px
+   "YOffset": 0,   //提示框位置纵向偏移量,单位px
+   "width": 204,   //提示框宽度，单位px
+   "fontColor": "#666",  //提示框文字颜色
+   "fontColorHI": "#222",  //提示框高亮选择时文字颜色
+   "fontSize": "16px",  //文字大小
+   "fontFamily": "微软雅黑", //文字字体
+   "borderColor": "#d8d8d8", //提示框的边框颜色
+   "bgcolorHI": "#e8e8e8",  //提示框高亮选择的颜色
+   "sugSubmit": false,  //在选择提示词条是是否提交表单 
+   };
+   BaiduSuggestion.bind("ipt1",params,show);    
 </script> 
         </body>
 </html>
