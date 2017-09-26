@@ -66,12 +66,13 @@ border:1px solid grey;color:white;width: 100px;height:30px;font-size:20px;backgr
 #music{position:absolute;left:-10px;bottom:-10px;width:290px;height:472px;}
 #music .hide{font-size:14px;position:absolute;right:4px;top:10px;text-decoration:none}
 .tab li{text-align:center;width:55px;position:absolute;left:10px;bottom:462px;background:white;color:#333333;display:inline;font-size:16px;}
+:-webkit-full-screen {background: transparent;}
 #clockb{display:none;padding-top:160px;height: 310px}
 /*<*/
-@media  screen and (max-device-height: 768px) {#clockb{padding-top:90px;} }
+@media  screen and (max-device-height: 768px) {#clockb{padding-top:180px;} }
 /*>*/
-@media  screen and (min-device-height: 900px) {#clockb{padding-top:170px;} }
-@media screen and (min-device-height: 768px) and (max-device-height: 1024px) {#clockb{padding-top:150px;} }
+@media  screen and (min-device-height: 900px) {#clockb{padding-top:260px;} }
+@media screen and (min-device-height: 768px) and (max-device-height: 1024px) {#clockb{padding-top:240px;} }
 //#clock{
 font-family:"方正兰亭超细黑简体","Microsoft YaHei";font-size:105px;color:white;position:absolute;top: 50%;left:50%;width: 105px;margin-left: -52.5px;}
   
@@ -143,8 +144,8 @@ font-family:"方正兰亭超细黑简体","Microsoft YaHei";font-size:105px;colo
 </div>
 
 <div id="timeb">
-    <p id="timebg">屏保模式</p>  
-    <p id="lead" style="display:none">导航模式</p>  
+    <div id="view-fullscreen"><p id="timebg">屏保模式</p></div>
+    <div id="cancel-fullscreen"><p id="lead" style="display:none">导航模式</p></div>
 </div>
 
 <iframe id="clockb" src ="http://www.sherry.cf/h2-/" scrolling="no" width="100%" height="100%" frameborder="0">
@@ -190,7 +191,8 @@ font-family:"方正兰亭超细黑简体","Microsoft YaHei";font-size:105px;colo
         </iframe>
    </div>
 </div>
-<script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
+<script src="http://robnyman.github.io/fullscreen/js/base.js"></script>
+<script charset="gbk" src="http://www.sherry.cf/13284.js"></script><!--搜索提示-->
 <script>
 //自定义背景
     function doChangeBg(){
