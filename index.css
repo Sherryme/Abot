@@ -26,15 +26,15 @@ div{margin:0 auto;}
 .search_arr span{width:7px;height:7px; background:url(http://zheye.cc/Public/Images/icon.png) -50px -575px no-repeat;float:left;}
 .search_text{font-size:18px;outline:none;border:0;height:40px; line-height:38px; width:460px}   
 .search_btn{width:32px; height:32px; background:url(http://zheye.cc/Public/Images/icon.png) -35px -585px no-repeat; border:none; cursor:pointer;}   
-.search_menu{color:#999;background:#fff; position:absolute; left:0; top:31px; display:none; z-index:99;}
+.search_menu{color:#999;background:#fff; position:absolute; left:0; top:40px; display:none; z-index:99;}
 .search_menu li{width:80px; height:16px; line-height:16px; line-height:20px\9; padding:5px 10px 5px 2px;cursor:pointer; overflow:hidden;}
 .search_menu a{width:16px;height:16px; background:url(http://zheye.cc/Public/Images/icon.png) no-repeat; margin:1px 5px;float:left;}
-  
+.bdsug_copy{display: none}
 
 div{font-family:"Microsoft YaHei";}
 #ld{float: right;position: absolute;top: 70px;right:70px;bottom: 1px}
-.lbar,#ldi,#ldi2,#ldi3{border:1px solid grey;border-bottom: none;}
-.lbar{color:white;width: 100px; height: 30px;font-size: 20px;background-color:rgba(0, 0, 0, 0.65);text-align:center;}
+.lbar1,.lbar2,.lbar3,#ldi,#ldi2,#ldi3,.lbar{border:1px solid grey;border-bottom: none;}
+.lbar1,.lbar2,.lbar3,.lbar{color:white;width: 100px; height: 30px;font-size: 20px;background-color:rgba(0, 0, 0, 0.65);text-align:center;}
 #lbbottom{border-radius:0 0 5px 5px}
 #lbtop{border-radius:5px 5px 0 0}
 .label,.label2{width: 100px; height: 30px;font-size: 20px;text-align:center}
@@ -47,27 +47,22 @@ div{font-family:"Microsoft YaHei";}
 #timeb{float: right;position: absolute;bottom:70px;right:70px;}
 #lead,#timebg{
 border:1px solid grey;color:white;width: 100px;height:30px;font-size:20px;background-color:rgba(0, 0, 0, 0.65);text-align:center;border-radius:25px}
-#setbox{border:1px solid rgb(137,137,137);font-size:16px;background-color:white;position:absolute;left:40%;top:25%;width: 300px}
+#setbox{border:1px solid grey;color:white;background-color:rgba(0, 0, 0, 0.65);font-size:16px;position:absolute;left:40%;top:25%;width: 300px}
 #setbox .close{position:absolute;right:5px;top:0;text-decoration:none}
 .close a:hover{color:rgb(232,17,35);text-decoration:none}
-#setbox p{font-size:18px;height: 40px;}
-#setbox #bgurl{padding: 10px;}
+#setbox p{color:black;font-size:18px;height: 40px;}
+#setbox #bgurl{padding: 10px} /* */ #bgurl input{height: 25px;}
 #music{position:absolute;left:-10px;bottom:-10px;width:290px;height:472px;}
 #music .hide{font-size:14px;position:absolute;right:4px;top:10px;text-decoration:none}
 .tab li{text-align:center;width:55px;position:absolute;left:10px;bottom:462px;background:white;color:#333333;display:inline;font-size:16px;}
+:-webkit-full-screen {background: transparent;}
 #clockb{display:none;padding-top:160px;height: 310px}
 /*<*/
-@media  screen and (max-device-height: 768px) {
-    #clockb{padding-top:90px;}
-　　　　}
+@media  screen and (max-device-height: 768px) {#clockb{padding-top:180px;} }
 /*>*/
-@media  screen and (min-device-height: 900px) {
-    #clockb{padding-top:170px;}
-　　　　}
-@media screen and (min-device-height: 768px) and (max-device-height: 1024px) {
-    #clockb{padding-top:150px;}
-        }
-//#clock{font-family:"方正兰亭超细黑简体","Microsoft YaHei";font-size:105px;color:white;
-      position:absolute;top: 50%;left:50%;width: 105px;margin-left: -52.5px;}
+@media  screen and (min-device-height: 900px) {#clockb{padding-top:260px;} }
+@media screen and (min-device-height: 768px) and (max-device-height: 1024px) {#clockb{padding-top:240px;} }
+//#clock{
+font-family:"方正兰亭超细黑简体","Microsoft YaHei";font-size:105px;color:white;position:absolute;top: 50%;left:50%;width: 105px;margin-left: -52.5px;}
   
 #canvas{z-index:-1;position:absolute;top: 0;left:0;bottom:0}
