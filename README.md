@@ -1,4 +1,1 @@
-来自云端的桌面，实用搜索引擎、一键变身屏保。
-手机版即将登场<br>
-<a href="http://www.sherry.cf/h6-" target="_blank">马上体验</a>
-<a href="http://sherryme.github.io/Desk/">GitHub版</a>
+为了排解孤独寂寞，因此而写的人工智障，没啥卵用
