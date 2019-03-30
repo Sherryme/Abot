@@ -5,7 +5,7 @@ if alex = "导航" then
 dim lead
 Set lead=WScript.CreateObject("WScript.Shell") 
 On error Resume Next 
-lead.Run "www.sherry.cf/h6-" 
+  lead.Run "www.sherry.cf/desk" 
 CreateObject("SAPI.SpVoice").Speak ("已为您打开随身导航")
 else
  if alex = "音乐" then
